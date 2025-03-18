@@ -24,6 +24,7 @@ export default function Login() {
     ),
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (data: any) => {
     console.log("User Data:", data);
   };
