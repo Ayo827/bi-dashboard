@@ -6,7 +6,6 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, 
 import DataTable from "react-table-ui";
 import DarkModeToggle from "@/component/DarkModeToggle";
 
-// Sample Data
 const metrics = [
   { title: "Total Users", value: "10,200" },
   { title: "Active Sessions", value: "342" },

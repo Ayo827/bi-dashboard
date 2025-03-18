@@ -12,8 +12,7 @@ export default function DarkModeToggle() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null; // Prevents hydration mismatch
-
+  if (!mounted) return null;
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
