@@ -7,7 +7,7 @@ import { TextField, Checkbox, FormControlLabel, Button } from "@mui/material";
 import DarkModeToggle from "@/component/DarkModeToggle";
 import { useTheme } from "next-themes";
 
-export default function Home() {
+export default function Login() {
   const { theme } = useTheme();
 
   const {
