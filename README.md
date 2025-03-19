@@ -1,37 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+BI Dashboard
 
-## Getting Started
+Overview
 
-First, run the development server:
+BI Dashboard is a modern, interactive business intelligence dashboard built with Next.js, Typescript, Material-UI, and Recharts. It provides data visualization features such as line charts, bar charts, and pie charts, along with user management capabilities.
 
-```bash
+Features
+
+📊 Data Visualization: Line charts, bar charts, and pie charts for analytics.
+
+👥 User Authentication: Supports login, signup, and session management using cookies.
+
+🌙 Dark Mode Toggle: Integrated theme switching.
+
+📈 Dashboard Metrics: Displays total users, active sessions, and sales revenue.
+
+📂 Mock API Data: Uses mock API responses for testing charts and tables.
+
+Technologies Used
+
+Next.js (React Framework)
+
+Material-UI (UI Components)
+
+Recharts (Charts & Graphs)
+
+React Table UI (Data Table Management)
+
+Cookies (Authentication Persistence)
+
+Installation
+
+Clone the repository:
+
+git clone https://github.com/Ayo827/bi-dashboard.git
+
+Navigate to the project directory:
+
+cd bi-dashboard
+
+Install dependencies:
+
+npm install
+
+Run the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open your browser and go to:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Mock API Data
 
-## Learn More
+This project includes mock API data for metrics, sales trends, user growth, and category distribution. You can find the API in the /mocks folder and modify it as needed.
 
-To learn more about Next.js, take a look at the following resources:
+Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Feel free to fork this repository, make changes, and submit a pull request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+License
 
-## Deploy on Vercel
+This project is open-source and available under the MIT License.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-"# bi-dashboard" 
