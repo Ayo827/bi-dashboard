@@ -1,9 +1,12 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, Typography, Grid } from "@mui/material";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from "recharts";
 import DataTable from "react-table-ui";
 import DarkModeToggle from "@/component/DarkModeToggle";
+import { useAuth } from "@/context/AuthContext";
 
 const metrics = [
   { title: "Total Users", value: "10,200" },
@@ -40,11 +43,33 @@ const users = [
 ];
 
 export default function Dashboard() {
+  const { user, logout } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+  }, [user, router]);
+
+  if (!user) return null;
+
   return (
     <div className="p-6 space-y-6">
-      <div className="flex justify-end">
+      <div className="flex justify-between">
         <DarkModeToggle />
+        <button onClick={logout} className="px-4 py-2 bg-red-500 text-white rounded">Logout</button>
       </div>
+
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">Welcome, {user.fullName}!</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
 
       <Grid container spacing={3}>
         {metrics.map((metric, index) => (
