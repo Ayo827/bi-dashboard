@@ -35,19 +35,19 @@ export default function SignUp() {
   };
 
   return (
-    <div className={`flex justify-center items-center min-h-screen ${theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-100 text-black"}`}>
-      <div className="bg-white dark:bg-gray-800 p-6 shadow-md rounded-md w-96">
+    <div className={`flex justify-center items-center min-h-screen ${theme === "dark" ? "bg-gray-900 text-blue" : "bg-gray-100 text-black"}`}>
+      <div className="bg-white p-6 shadow-md rounded-md w-96">
         <div className="flex justify-end">
           <DarkModeToggle />
         </div>
-        <h2 className="text-2xl font-bold mb-4 text-center">Sign Up</h2>
+        <h2 className={`font-bold mb-4 text-center`}>Register</h2>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-4 flex flex-col justify-between h-70">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-4 flex flex-col justify-between h-100">
           <TextField label="Full Name" fullWidth {...register("fullName")} error={!!errors.fullName} helperText={errors.fullName?.message} />
           <TextField label="Email" fullWidth {...register("email")} error={!!errors.email} helperText={errors.email?.message} />
           <TextField label="Password" type="password" fullWidth {...register("password")} error={!!errors.password} helperText={errors.password?.message} />
           <FormControlLabel control={<Checkbox {...register("rememberMe")} />} label="Remember Me" />
-          <Button type="submit" variant="contained" fullWidth>Sign Up</Button>
+          <Button type="submit" variant="contained" fullWidth>Submit</Button>
           <div className="text-center">
             No account? <Link href="/" className="text-blue-500 hover:underline">Login</Link>
           </div>

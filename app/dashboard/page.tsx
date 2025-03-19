@@ -1,56 +1,69 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, Typography, Grid } from "@mui/material";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from "recharts";
 import DataTable from "react-table-ui";
 import DarkModeToggle from "@/component/DarkModeToggle";
 import { useAuth } from "@/context/AuthContext";
+import { getMetrics, getSalesData, getUserGrowth, getCategoryData, getUsers } from "@/mocks/controller";
 
-const metrics = [
-  { title: "Total Users", value: "10,200" },
-  { title: "Active Sessions", value: "342" },
-  { title: "Sales Revenue", value: "$25,560" },
-];
 
-const salesData = [
-  { month: "Jan", sales: 4000 },
-  { month: "Feb", sales: 3000 },
-  { month: "Mar", sales: 5000 },
-  { month: "Apr", sales: 7000 },
-];
-
-const userGrowth = [
-  { year: "2020", users: 2000 },
-  { year: "2021", users: 4000 },
-  { year: "2022", users: 7000 },
-  { year: "2023", users: 11000 },
-];
-
-const categoryData = [
-  { name: "Electronics", value: 45 },
-  { name: "Fashion", value: 30 },
-  { name: "Groceries", value: 25 },
-];
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
-const users = [
-  { id: 1, name: "John Doe", email: "john@example.com", role: "Admin" },
-  { id: 2, name: "Jane Smith", email: "jane@example.com", role: "User" },
-  { id: 3, name: "Alice Johnson", email: "alice@example.com", role: "Editor" },
-];
+interface Metrics {
+  title: string;
+  value: string;
+}
+
+interface Sales {
+  month: string;
+  sales: number;
+}
+
+interface UserGrowth {
+  year: string;
+  users: number;
+}
+
+interface CategoryData {
+  name: string;
+  value: number;
+}
+
+interface Users {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+}
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
   const router = useRouter();
+  const [metrics, setMetrics] = useState<Metrics[]>([]);
+  const [salesData, setSalesData] = useState<Sales[]>([]);
+  const [userGrowth, setUserGrowth] = useState<UserGrowth[]>([]);
+  const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
+  const [users, setUsers] = useState<Users[]>([]);
 
   useEffect(() => {
     if (!user) {
-      router.push("/login");
+      router.push("/");
+    }else{
+      fetchData();
     }
   }, [user, router]);
+
+  const fetchData = async () => {
+    setMetrics(await getMetrics());
+    setSalesData(await getSalesData());
+    setUserGrowth(await getUserGrowth());
+    setCategoryData(await getCategoryData());
+    setUsers(await getUsers());
+  };
 
   if (!user) return null;
 
@@ -58,7 +71,7 @@ export default function Dashboard() {
     <div className="p-6 space-y-6">
       <div className="flex justify-between">
         <DarkModeToggle />
-        <button onClick={logout} className="px-4 py-2 bg-red-500 text-white rounded">Logout</button>
+        <button onClick={logout} className="px-4 py-2 bg-red-500 text-white rounded cursor-pointer">Logout</button>
       </div>
 
       <Grid container spacing={3}>

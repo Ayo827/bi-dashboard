@@ -16,7 +16,7 @@ export default function DarkModeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 transition"
+      className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 transition cursor-pointer"
     >
       {theme === "dark" ? <FaSun className="text-yellow-500" /> : <FaMoon className="text-blue-500" />}
     </button>

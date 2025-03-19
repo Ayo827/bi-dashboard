@@ -1,5 +1,6 @@
 "use client";
 
+import {useState} from 'react';
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -12,13 +13,14 @@ import Link from "next/link";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email format").required("Email is required"),
-  password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+  password: yup.string().required("Password is required"),
   rememberMe: yup.boolean(),
 });
 
 export default function Login() {
   const { theme } = useTheme();
   const { login } = useAuth();
+  const [processing, setProcessing] = useState(false);
 
   const {
     register,
@@ -30,14 +32,16 @@ export default function Login() {
 
 
 
-  const onSubmit: SubmitHandler<{ email: string; password: string; rememberMe?: boolean }> = (data) => {
+  const onSubmit: SubmitHandler<{ email: string; password: string; rememberMe?: boolean }> =  (data) => {
+    setProcessing(true);
     const { email, password, rememberMe = false } = data;
     login(email, password, rememberMe);
+    setProcessing(false);
   };
 
   return (
-    <div className={`flex justify-center items-center min-h-screen ${theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-100 text-black"}`}>
-      <div className="bg-white dark:bg-gray-800 p-6 shadow-md rounded-md w-96">
+    <div className={`flex justify-center items-center min-h-screen ${theme === "dark" ? "bg-gray-900 text-blue" : "bg-gray-100 text-black"}`}>
+      <div className="bg-white  p-6 shadow-md rounded-md w-96">
         <div className="flex justify-end">
           <DarkModeToggle />
         </div>
@@ -47,7 +51,7 @@ export default function Login() {
           <TextField label="Email" fullWidth {...register("email")} error={!!errors.email} helperText={errors.email?.message} />
           <TextField label="Password" type="password" fullWidth {...register("password")} error={!!errors.password} helperText={errors.password?.message} />
           <FormControlLabel control={<Checkbox {...register("rememberMe")} />} label="Remember Me" />
-          <Button type="submit" variant="contained" fullWidth>Login</Button>
+          <Button type="submit" variant="contained" fullWidth disabled={processing}>Login</Button>
           <div className="text-center">
             No account? <Link href="/register" className="text-blue-500 hover:underline">Register</Link>
           </div>
